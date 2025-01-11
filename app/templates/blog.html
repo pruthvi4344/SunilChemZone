@@ -1,0 +1,531 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{post.title}} - Sunil Chemistry Zone</title>
+    <style>
+        :root {
+            --primary-color: #8B5CF6;
+            --background-dark: #1a1a1a;
+            --text-light: #e0e0e0;
+            --text-gray: #888;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            background-color: var(--background-dark);
+            color: var(--text-light);
+        }
+
+        .navbar {
+          background: rgba(0, 0, 0, 0.7);
+          backdrop-filter: blur(10px);
+          padding: 12px 30px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          position: fixed;
+          width: 98%;
+          top: 0;
+          z-index: 1000;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .nav-logo {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+      }
+
+      .logo-icon {
+          font-size: 2rem;
+          animation: rotate 4s infinite linear;
+      }
+
+      .logo-text {
+          font-size: 1.5rem;
+          font-weight: bold;
+          background: linear-gradient(45deg, #fff, #7928CA);
+          background-clip: text;
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+      }
+
+      .nav-right {
+          display: flex;
+          align-items: center;
+          gap: 20px;
+      }
+        .molecule {
+          position: absolute;
+          font-size: 4rem;
+          opacity: 0.15;
+          filter: blur(1px);
+          animation: molecule 20s infinite linear;
+          color: #fff;
+          text-shadow: 0 0 20px rgba(121, 40, 202, 0.5);
+          z-index: -1;
+      }
+
+      @keyframes rotate {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+      }
+
+      @keyframes molecule {
+          0% {
+              transform: translate(-100px, 100vh) rotate(0deg) scale(0.5);
+              opacity: 0;
+          }
+          50% {
+              opacity: 0.15;
+              transform: translate(50vw, 50vh) rotate(360deg) scale(1);
+          }
+          100% {
+              transform: translate(100vw, -100vh) rotate(720deg) scale(0.5);
+              opacity: 0;
+          }
+      }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border: 2px solid var(--primary-color);
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .back-button:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .blog-container {
+            max-width: 800px;
+            margin: 8.5rem auto;
+            padding: 0 1rem;
+        }
+
+        .blog-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid #404040;
+        }
+
+        .blog-title {
+            font-size: 2.5rem;
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .blog-meta {
+            color: var(--text-gray);
+            font-size: 1rem;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .meta-item svg {
+            width: 20px;
+            height: 20px;
+            fill: var(--primary-color);
+        }
+
+        .blog-content {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 3rem;
+        }
+
+        .blog-content p {
+            margin-bottom: 1.5rem;
+        }
+
+        .blog-content img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin: 2rem 0;
+        }
+
+        .blog-content h2 {
+            color: var(--primary-color);
+            margin-top: 2rem;
+        }
+
+        .blog-footer {
+            border-top: 1px solid #404040;
+            padding-top: 2rem;
+            margin-top: 3rem;
+        }
+
+        .author-section {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .author-image {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .author-info h3 {
+            margin: 0;
+            color: white;
+        }
+
+        .author-info p {
+            margin: 0.5rem 0 0;
+            color: var(--text-gray);
+            text-align: justify !important;
+        }
+
+        @media (max-width: 768px) {
+            .blog-title {
+                font-size: 2rem;
+            }
+
+            .blog-meta {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: center;
+            }
+
+            .blog-container {
+                padding: 0 1.5rem;
+            }
+        }
+        /* Base responsive styles for your blog page */
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+    .blog-container {
+        max-width: 1000px;
+        margin: 8.5rem auto;
+    }
+
+    .blog-title {
+        font-size: 3rem;
+    }
+
+    .blog-content {
+        font-size: 1.2rem;
+    }
+}
+
+/* Large devices (desktops, 992px to 1199px) */
+@media (max-width: 1199px) {
+    .blog-container {
+        max-width: 800px;
+        margin: 8rem auto;
+    }
+}
+
+/* Medium devices (tablets, 768px to 991px) */
+@media (max-width: 991px) {
+    .navbar {
+        padding: 10px 20px;
+    }
+
+    .logo-text {
+        font-size: 1.3rem;
+    }
+
+    .logo-icon {
+        font-size: 1.8rem;
+    }
+
+    .blog-container {
+        max-width: 700px;
+        margin: 7.5rem auto;
+        padding: 0 2rem;
+    }
+
+    .blog-title {
+        font-size: 2.2rem;
+    }
+
+    .blog-content {
+        font-size: 1.05rem;
+    }
+
+    .back-button {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.9rem;
+    }
+}
+
+/* Small devices (landscape phones, 576px to 767px) */
+@media (max-width: 767px) {
+    .navbar {
+        padding: 8px 15px;
+        width: 96%;
+    }
+
+    .logo-text {
+        font-size: 1.1rem;
+    }
+
+    .logo-icon {
+        font-size: 1.5rem;
+    }
+
+    .blog-container {
+        max-width: 100%;
+        margin: 7rem auto;
+        padding: 0 1.5rem;
+    }
+
+    .blog-title {
+        font-size: 1.8rem;
+    }
+
+    .blog-meta {
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+
+    .meta-item {
+        font-size: 0.9rem;
+    }
+
+    .blog-content {
+        font-size: 1rem;
+        line-height: 1.7;
+    }
+
+    .blog-content img {
+        margin: 1.5rem 0;
+    }
+
+    .author-section {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .author-info {
+        text-align: center;
+    }
+
+    .author-info p {
+        text-align: center !important;
+    }
+
+    .back-button svg {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+/* Extra small devices (phones, 575px and down) */
+@media (max-width: 575px) {
+    .navbar {
+        padding: 8px 10px;
+        width: 96%;
+    }
+
+    .nav-logo {
+        gap: 5px;
+    }
+
+    .logo-text {
+        font-size: 1rem;
+    }
+
+    .logo-icon {
+        font-size: 1.3rem;
+    }
+
+    .blog-container {
+        margin: 6.5rem auto;
+        padding: 0 1rem;
+    }
+
+    .blog-title {
+        font-size: 1.5rem;
+    }
+
+    .blog-header {
+        margin-bottom: 2rem;
+        padding-bottom: 1.5rem;
+    }
+
+    .blog-content {
+        font-size: 0.95rem;
+        line-height: 1.6;
+    }
+
+    .blog-content h2 {
+        font-size: 1.3rem;
+    }
+
+    .blog-footer {
+        padding-top: 1.5rem;
+        margin-top: 2rem;
+    }
+
+    .back-button {
+        padding: 0.3rem 0.6rem;
+        font-size: 0.8rem;
+    }
+
+    .author-image {
+        width: 50px;
+        height: 50px;
+    }
+
+    .author-info h3 {
+        font-size: 1.1rem;
+    }
+
+    .author-info p {
+        font-size: 0.9rem;
+    }
+
+    /* Adjust molecule animation for smaller screens */
+    .molecule {
+        font-size: 3rem;
+    }
+
+    @keyframes molecule {
+        0% {
+            transform: translate(-50px, 100vh) rotate(0deg) scale(0.3);
+        }
+        50% {
+            transform: translate(50vw, 50vh) rotate(360deg) scale(0.8);
+        }
+        100% {
+            transform: translate(100vw, -100vh) rotate(720deg) scale(0.3);
+        }
+    }
+}
+
+/* Fix for very small devices (iPhone SE, Galaxy Fold etc.) */
+@media (max-width: 320px) {
+    .navbar {
+        padding: 6px 8px;
+        width: 96%;
+    }
+
+    .logo-text {
+        font-size: 0.9rem;
+    }
+
+    .logo-icon {
+        font-size: 1.2rem;
+    }
+
+    .blog-title {
+        font-size: 1.3rem;
+    }
+
+    .back-button {
+        padding: 0.2rem 0.4rem;
+        font-size: 0.75rem;
+    }
+
+    .back-button svg {
+        width: 16px;
+        height: 16px;
+    }
+}
+
+/* Landscape orientation fixes */
+@media (max-height: 500px) and (orientation: landscape) {
+    .blog-container {
+        margin: 6rem auto;
+    }
+
+    .navbar {
+        padding: 5px 15px;
+    }
+
+    .blog-header {
+        margin-bottom: 1.5rem;
+    }
+}
+    </style>
+</head>
+<body>
+        <!-- Navbar -->
+        <nav class="navbar">
+            <div class="nav-logo">
+                <span class="logo-icon">⚗️</span>
+               <a href="{%url 'home'%}" style="text-decoration: none;"><span class="logo-text">Sunil Chemistry Zone</span></a> 
+            </div>
+            <a href="{% url 'home' %}" class="back-button">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M19 12H5M12 19l-7-7 7-7"/>
+                </svg>
+                Back to Home
+            </a>
+        </nav>
+    
+        <!-- Blog Content -->
+        <div class="blog-container">
+            <article>
+                <header class="blog-header">
+                    <h1 class="blog-title">{{post.title}}</h1>
+                    <div class="blog-meta">
+                        <div class="meta-item">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
+                                <path d="M12 6c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm0 10c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z"/>
+                            </svg>
+                            <span>{{post.author}}</span>
+                        </div>
+                        <div class="meta-item">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11z"/>
+                            </svg>
+                            <span>{{post.date|date:"F j, Y"}}</span>
+                        </div>
+                        <!-- <div class="meta-item">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/>
+                            </svg>
+                            <span>views</span>
+                        </div> -->
+                    </div>
+                </header>
+    
+                <div class="blog-content">
+                    {{post.content|safe}}
+                </div>
+    
+                <footer class="blog-footer">
+                    <div class="author-section">
+                        <img src="" alt="{{blog.author}}" class="author-image">
+                        <div class="author-info">
+                            <h3>{{post.author}}</h3>
+                            <p style="text-align: justify;">Professor of Chemistry</p>
+                        </div>
+                    </div>
+                </footer>
+            </article>
+        </div>
+
+
+</body>
+</html>

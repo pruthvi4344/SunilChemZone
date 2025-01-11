@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <style>
+                #toast {
+            background-color: white;
+            color: #333;
+            padding: 15px;
+            border-radius: 4px;
+            position: fixed;
+            right: 20px;
+            top: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-left: 4px solid #22c55e;
+            animation: slideIn 0.5s ease-out;
+            /* Add these properties to ensure it stays on top */
+            z-index: 9999;
+            pointer-events: none; /* This allows clicking through the toast */
+        }
+
+        .checkmark {
+            background-color: #22c55e;
+            color: white;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+            }
+            to {
+                transform: translateX(0);
+            }
+        }
+    </style>
+</head>
+<body>
+       <!-- notifications -->
+   <!-- {% if messages %} -->
+   {% for message in messages %}
+   <div id="toast">
+       <!-- <div class="checkmark">✓</div> -->
+       <span>{{message}}</span>
+   </div>    
+   <!-- <p style="color: red; text-align: center; font-size: large; margin-bottom: 20px;">{{ message }}</p> -->
+   {% endfor %}
+   <!-- {% endif %} -->
+
+   <script>
+       setTimeout(function() {
+           document.getElementById("toast").style.display = "none";
+       }, 3000);
+   </script>
+    <h1>Welcome, {{ user.username }}!</h1>
+    <p>Your email: {{ user.email }}</p>
+    <p>Username: {{ user.username }}</p>
+
+    <a href="{%url 'account_logout'%}">logout</a>
+    
+</body>
+</html>
+
+
+

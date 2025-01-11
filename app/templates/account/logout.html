@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+                * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: #000000;
+            background: radial-gradient(circle, #1a1a1a 0%, #000000 100%);
+            position: relative;
+            overflow: hidden;
+            color: #fff;
+        }
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .popup {
+            background: rgb(17, 17, 17);
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            max-width: 300px;
+            box-shadow: 0 2px 10px rgba(134, 45, 236, 0.458);
+            animation: popIn 0.3s ease-out;
+        }
+
+        .popup h3 {
+            margin-top: 0;
+            color: #c2c2c2;
+        }
+
+        .popup-buttons {
+            margin-top: 20px;
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 8px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .btn-cancel {
+            background: #e5e5e5;
+            color: #8e8e8e;
+        }
+
+        .btn-confirm {
+            background: #ef4444;
+            color: white;
+        }
+
+        @keyframes popIn {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Popup -->
+    <div class="popup-overlay">
+        <div class="popup">
+            <h3>Are you sure you want to sign out?</h3>
+            <form action="" method="POST">
+                {%csrf_token%}
+            <div class="popup-buttons">
+                <button class="btn btn-cancel" onclick="hidePopup()"><a href="{%url 'home'%}" style="text-decoration: none;">Cancel</a></button>
+                <button class="btn btn-confirm" onclick="signOut()">Sign Out</button>
+            </div>
+        </form>
+        </div>
+    </div>
+
+    <script>
+        function hidePopup() {
+            document.querySelector('.popup-overlay').style.display = 'none';
+        }
+
+        function signOut() {
+            // Add your sign out logic here
+            console.log('Signing out...');
+            hidePopup();
+        }
+
+
+        function createAnimations() {
+            const animationsContainer = document.getElementById('animations');
+            const molecules = ['⚛️', '🧪', '🔬', '🧫'];
+            
+            // Create molecules
+            for (let i = 0; i < 8; i++) {
+                const molecule = document.createElement('div');
+                molecule.className = 'molecule';
+                molecule.textContent = molecules[Math.floor(Math.random() * molecules.length)];
+                molecule.style.left = Math.random() * 100 + 'vw';
+                molecule.style.animationDelay = Math.random() * 5 + 's';
+                animationsContainer.appendChild(molecule);
+            }
+        }
+
+        // Initialize animations
+        createAnimations();
+    </script>
+</body>
+</html>

@@ -1,0 +1,120 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verification</title>
+    <style>
+        body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #000;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    text-align: center;
+}
+
+.verification-box {
+    background-color: #1c1c1c;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    max-width: 400px;
+    margin: auto;
+}
+
+.verification-box h1 {
+    color: #fff;
+    margin-bottom: 20px;
+}
+
+.verification-box p {
+    color: #ccc;
+    margin-bottom: 20px;
+}
+
+.verification-box a {
+    color: #007BFF;
+    text-decoration: none;
+}
+
+.verification-box a:hover {
+    text-decoration: underline;
+}
+
+                #toast {
+            background-color: white;
+            color: #333;
+            padding: 15px;
+            border-radius: 4px;
+            position: fixed;
+            right: 20px;
+            top: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-left: 4px solid #22c55e;
+            animation: slideIn 0.5s ease-out;
+            /* Add these properties to ensure it stays on top */
+            z-index: 9999;
+            pointer-events: none; /* This allows clicking through the toast */
+        }
+
+        .checkmark {
+            background-color: #22c55e;
+            color: white;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+            }
+            to {
+                transform: translateX(0);
+            }
+        }
+    </style>
+</head>
+<body>
+          <!-- notifications -->
+   <!-- {% if messages %} -->
+   {% for message in messages %}
+   <div id="toast">
+       <!-- <div class="checkmark">✓</div> -->
+       <span>{{message}}</span>
+   </div>    
+   <!-- <p style="color: red; text-align: center; font-size: large; margin-bottom: 20px;">{{ message }}</p> -->
+   {% endfor %}
+   <!-- {% endif %} -->
+
+   <script>
+       setTimeout(function() {
+           document.getElementById("toast").style.display = "none";
+       }, 3000);
+   </script>
+    <!-- verification.html -->
+    <div class="container">
+        <div class="verification-box">
+            <h1>Verify Your Email Address</h1>
+            <p>We have sent a verification link to your email address. Please check your inbox and click on the link to verify your email.</p>
+            <p>If you didn’t receive the email, check your spam folder
+                 <!-- <a href="#">resend verification email</a> -->
+                </p>
+        </div>
+    </div>
+
+</body>
+</html>

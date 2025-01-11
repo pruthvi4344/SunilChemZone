@@ -1,0 +1,230 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sunil Chemistry Zone - Dashboard</title>
+    <link rel="stylesheet" href="{% static 'css/indexcss.css' %}">
+    <script src="{% static 'js/indexjs.js' %}"></script>
+    
+</head>
+<body>
+    <!-- Keep your existing navbar and notifications code -->
+    <nav class="navbar">
+        <div class="nav-logo">
+            <span class="logo-icon">⚗️</span>
+           <a href="{%url 'home'%}" style="text-decoration: none;"><span class="logo-text">Sunil Chemistry Zone</span></a> 
+        </div>
+        <div class="nav-right">
+            <a href="#" class="username">{{ user.username }}</a>
+            <a href="{%url 'account_logout'%}" style="text-decoration: none;" class="logout-btn">Logout</a>
+        </div>
+    </nav>
+        <!-- notifications -->
+   <!-- {% if messages %} -->
+   {% for message in messages %}
+   <div id="toast">
+       <!-- <div class="checkmark">✓</div> -->
+       <span>{{message}}</span>
+   </div>    
+   <!-- <p style="color: red; text-align: center; font-size: large; margin-bottom: 20px;">{{ message }}</p> -->
+   {% endfor %}
+   <!-- {% endif %} -->
+
+   <script>
+       setTimeout(function() {
+           document.getElementById("toast").style.display = "none";
+       }, 3000);
+   </script>
+    <!-- Welcome Section -->
+    <section class="welcome-section">
+        <h1 class="welcome-text">Welcome to Chemistry Zone</h1>
+        <p class="welcome-subtext">Your Gateway to Chemistry Excellence</p>
+    </section>
+
+    <!-- Keep your existing search form -->
+     <!-- Chemistry Animation Elements -->
+     <div id="animations"></div>
+
+     <!-- Search Form -->
+     <div class="search-container">
+         <form class="search-form" method="POST" action="{%url 'home'%}">
+             {%csrf_token%}
+             <div class="form-group">
+                 <label for="category">Select Category</label>
+                 
+                 <select id="standard"  onchange="fetchChapters()" required>
+                     <option value="">Select standard</option>
+                     {% for standard in standards%}
+                     <option value="{{standard.id}}">{{standard.std}}</option>
+                 
+                     {%endfor%}
+                 </select>
+                 
+             </div>
+             <div class="form-group">
+                 <label for="topic">Select chapter</label>
+                 <select id="chapter" name="chapter" required>
+                     <option value="" disabled selected>Choose Chapter</option>
+                     
+                 </select>
+             </div>
+             <button type="submit" name="filter_materials" class="search-btn">Search</button>
+ 
+         </form>
+ 
+   
+    </div>
+    <!-- Materials Table -->
+    {% if materials %}
+    <section class="materials-section">
+        <h2>Study Materials</h2>
+        <table class="materials-table">
+            <thead>
+                <tr>
+                    <th>Material Name</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for material in materials %}
+                <tr>
+                    <td>{{ material.title }}</td>
+                    <td>
+                        <a href="{{ material.file.url }}" class="download-btn" download>Download</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    </section>
+    {%endif%}
+
+    <div class="section-container">
+        <!-- About Section -->
+        {% load static %}
+        <div class="about-section">
+            {%if photos.photo %}
+            <img src="{{photos.photo.url}}" alt="Professor" class="profile-image">
+            {%endif%}
+            <div class="about-content">
+                <h2>About <span>Me</span></h2>
+                {%if aboutme.info%}
+                <p>{{aboutme.info}}</p>
+                {%endif%}
+                <ul>
+                    {%for aboutskill in aboutskills%}
+                    <li>{{aboutskill.skill}}</li>
+                    <!-- <li>Published researcher with 20+ papers</li> -->
+                    <!-- <li>Expert in practical laboratory techniques</li> -->
+                     {%endfor%}
+                </ul>
+            </div>
+        </div>
+        <section class="recent-posts">
+            <h2>Recent Blog Posts</h2>
+            <table class="blog-table">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <!-- <th>Category</th> -->
+                        <th style="display: flex; justify-content: end;">Date</th>
+                        <!-- <th>Views</th> -->
+                    </tr>
+                </thead>
+                <tbody>
+                    {%for post in page_obj%}
+                    <tr>
+                        <td><a href="{%url 'blog' post.id%}" class="post-title">{{post.title|truncatechars:70}}</a></td>
+                        <!-- <td><span class="post-category">General Chemistry</span></td> -->
+                        <td><span class="post-date" style="display: flex; justify-content: end;">{{post.date|date:"F j, Y"}}</span></td>
+                        <!-- <td>1,234</td> -->
+                    </tr>
+                    {%endfor%}
+                    <!-- <tr> -->
+                        <!-- <td><a href="#" class="post-title">Top 10 Tips for Mastering Organic Chemistry</a></td> -->
+                        <!-- <td><span class="post-category">Organic Chemistry</span></td> -->
+                        <!-- <td><span class="post-date">Jan 5, 2025</span></td> -->
+                        <!-- <td>987</td> -->
+                    <!-- </tr> -->
+                    
+                </tbody>
+            </table>
+            <div class="pagination">
+                <span class="step-links">
+                    {% if page_obj.has_previous %}
+                        <a href="?page=1">&laquo; first</a>
+                        <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                    {% endif %}
+        
+                    <span class="current">
+                        Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                    </span>
+        
+                    {% if page_obj.has_next %}
+                        <a href="?page={{ page_obj.next_page_number }}">next</a>
+                        <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                    {% endif %}
+                </span>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <div class="contact-section">
+            <h2>Contact Me</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <svg width="24" height="24" fill="white" viewBox="0 0 24 24">
+                                <path d="M20,4H4C2.9,4,2,4.9,2,6v12c0,1.1,0.9,2,2,2h16c1.1,0,2-0.9,2-2V6C22,4.9,21.1,4,20,4z M20,8l-8,5L4,8V6l8,5l8-5V8z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 style="color: white; margin: 0;">Email</h3>
+                            <p style="color: #8B5CF6; margin: 0;">contact@chemistryzone.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <svg width="24" height="24" fill="white" viewBox="0 0 24 24">
+                                <path d="M20,15.5C18.8,15.5,17.5,15.3,16.4,14.9C16.3,14.9,16.2,14.9,16.1,14.9C15.8,14.9,15.6,15,15.4,15.2L13.2,17.4C10.4,15.9,8,13.6,6.6,10.8L8.8,8.6C9.1,8.3,9.2,7.9,9,7.6C8.7,6.5,8.5,5.2,8.5,4C8.5,3.4,8,3,7.5,3H4C3.4,3,3,3.4,3,4C3,13.4,10.6,21,20,21C20.6,21,21,20.6,21,20V16.5C21,16,20.6,15.5,20,15.5Z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 style="color: white; margin: 0;">Phone</h3>
+                            <p style="color: #8B5CF6; margin: 0;">+1 (555) 123-4567</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form action="" method="POST">
+                        {%csrf_token%}
+                    <input type="text" name="name" placeholder="Your Name" required>
+                    <input type="email" name="email" placeholder="Your Email" required>
+                    <textarea placeholder="Your Message" name="message" required></textarea>
+                    <button type="submit" name="contact_form" class="send-button">Send Message</button>
+                </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>© 2025 Chemistry Zone. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Contact Us</a>
+            </div>
+        </div>
+    </footer>
+
+    
+    
+</body>
+</html>

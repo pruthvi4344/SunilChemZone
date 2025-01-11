@@ -1,0 +1,95 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>form</title>
+    <style>
+        
+        body{
+            background-image: url(img/bg.jpg);
+        }
+        *{
+        margin: 0px;
+        }
+        .cont{
+            background-color: rgba(0, 0, 0, 0.6);
+            display: flex;
+            position: absolute;
+            top: 20%;
+            left: 40%;
+            width: 17%;
+            border-radius: 15px;
+        }
+        .input{
+            padding: 10px;
+            margin: 10px 10px 10px 30px;
+            border-radius: 15px;
+        }
+        .h2{
+            color: white;
+            margin-left: 86px;
+        }
+        .button{
+            padding: 10px 76px 10px 72px;
+            margin: 10px 10px 10px 30px;
+            border-radius: 15px;
+            
+        }
+       .button:hover{
+        background-color: pink;
+        color: black;
+        cursor: pointer;
+       }
+       .navbar{
+        background-color: rgb(34, 137, 240);
+        display: flex;
+        
+    padding: 10px 0px 0px 0px;
+
+
+       }
+       .navbar ul{
+        list-style: none;
+        
+       }
+       .navbar li{
+        display: inline;
+        padding: 13px;
+       }
+       .navbar li a{
+        text-decoration: none;
+        font-size: 19px;
+        color: white;
+        
+       }
+       .navbar li a:hover{
+        background-color: black;
+        padding: 15px;
+       }
+       
+       
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <ul>
+            <li><a href="#">home</a></li>
+            <li><a href="#">service</a></li>
+            <li><a href="#">contact us</a></li>
+            <li><a href="#">about us</a></li>
+            <li><a href="#">login</a></li>
+            <li style="float: right; padding-left: 900px; margin-top: -11px;""><a href="#" >logout</a></li>
+        </ul>
+    </nav>
+    <div class="cont">
+        <form>
+            <h2 class="h2"> register</h2>
+        <input type="text" class="input" placeholder="name">
+        <input type="number" class="input" placeholder="number">
+        <input type="password" class="input" placeholder="password">
+        <button class="button">submit</button>
+    </form>
+</div>
+</body>
+</html>
