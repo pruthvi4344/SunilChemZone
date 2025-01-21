@@ -7,7 +7,7 @@ from django.contrib.auth.hashers import make_password
 from django.contrib.auth import get_backends
 from allauth.account.models import EmailAddress
 from allauth.account.utils import send_email_confirmation
-from .models import Standard, Chapter, StudyMaterial, Post, myphoto, myinfo, skills
+from .models import Standard, Chapter, StudyMaterial, Post, myphoto, myinfo, skills, myemail, mycontact  , insta, Tele, yt
 from django.http import JsonResponse
 from django.core.mail import send_mail
 from django.core.paginator import Paginator
@@ -93,7 +93,19 @@ def home(request):
     photos = myphoto.objects.first()
     aboutme = myinfo.objects.first()
     aboutskills = skills.objects.all()
+    emailad = myemail.objects.all()
+    contacts = mycontact.objects.all()
+    instagrams = insta.objects.all()
+    telegrams = Tele.objects.all()
+    youtubes = yt.objects.all()
     posts = Post.objects.all().order_by('-id')
+
+    print(emailad)
+    print(contacts)
+    # print(youtubes)
+    # print(instagrams)
+    # print(telegrams)
+
 
     paginator = Paginator(posts, 7)  # 5 posts per page
     page_number = request.GET.get('page')  # Get the current page number from the URL
@@ -112,8 +124,8 @@ def home(request):
 
             subject = "New Contact Form Submission"
             email_message = f"Name: {name}\nEmail: {email}\nMessage: {message}"
-            from_email = 'hurrymargen@gmail.com'
-            recipient_list = ['hurrymargen@gmail.com']
+            from_email = 'sunilchemzone2403@gmail.com'
+            recipient_list = ['sunilchemzone2403@gmail.com']
 
             try:
                 send_mail(subject, email_message, from_email, recipient_list)
@@ -142,7 +154,12 @@ def home(request):
         'page_obj': page_obj,
         'photos': photos,
         'aboutme': aboutme,
-        'aboutskills': aboutskills
+        'aboutskills': aboutskills,
+        'emailad':emailad,
+        'contacts': contacts,
+        'telegrams': telegrams,
+        'youtubes': youtubes,
+        'instagrams': instagrams,
     })
 
 
@@ -153,7 +170,7 @@ def get_chapters(request):
         data = list(chapters.values('id', 'name'))
         return JsonResponse({'chapters': data})
     return JsonResponse({'chapters': []})
-
+@login_required
 def blog(request,id):
     post = get_object_or_404(Post,id=id)
     return render(request, 'blog.html', {'post': post})

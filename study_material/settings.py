@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -127,10 +128,12 @@ TIME_ZONE = 'Asia/Kolkata'
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-    BASE_DIR  /"app"/ "static",
+    BASE_DIR  / "static",
 ]
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+# STATIC_ROOT = BASE_DIR / "staticfiles"  # Adjust this if you want a specific directory for collected files
 # In settings.py, to enable debug logging
 # SOCIALACCOUNT_ADAPTER = 'allauth.socialaccount.adapters.DefaultSocialAccountAdapter'
 
@@ -166,9 +169,9 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'hurrymargen@gmail.com'
-EMAIL_HOST_PASSWORD = 'xhuh ozmp rhfp sqwy'
-DEFAULT_FROM_EMAIL = 'hurrymargen@gmail.com'
+EMAIL_HOST_USER = 'sunilchemzone2403@gmail.com'
+EMAIL_HOST_PASSWORD = 'sznu yjwv qxrv olqy'
+DEFAULT_FROM_EMAIL = 'sunilchemzone2403@gmail.com'
 
 # Django Allauth settings
 ACCOUNT_AUTHENTICATION_METHOD = 'email'

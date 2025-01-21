@@ -10,6 +10,19 @@ from django.db import models
 #     password1 = models.TextField(max_length=50)
 
 # from django.db import models
+class insta(models.Model):
+    instagram = models.CharField(max_length=50)
+    iname = models.CharField(max_length=50)
+class Tele(models.Model):
+    tele = models.CharField(max_length=50)
+    tname = models.CharField(max_length=50)
+class yt(models.Model):
+    yt = models.CharField(max_length=50)
+    yname = models.CharField(max_length=50)
+class myemail(models.Model):
+    email = models.CharField(max_length=100)
+class mycontact(models.Model):
+    contact = models.CharField(max_length=14)
 class myphoto(models.Model):
     photo = models.ImageField(upload_to='about_photos/', blank=True, null=True)
 class myinfo(models.Model):
