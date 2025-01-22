@@ -308,17 +308,17 @@ body {
     
     .logo-section {
         padding: 20px;
-        max-height: 504px; /* Remove fixed height */
+        max-height: 236px; /* Remove fixed height */
     }
     
     .logo-section img {
-        max-width: 600px;
+        max-width: 410px;
         width: 100%;
     }
     
     .login-section {
         padding: 20px;
-        max-height: 490px; /* Remove fixed height */
+        max-height: 555px; /* Remove fixed height */
     }
     
     .container {

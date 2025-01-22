@@ -132,7 +132,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     BASE_DIR  / "static",
 ]
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = BASE_DIR/'staticfiles'
 # STATIC_ROOT = BASE_DIR / "staticfiles"  # Adjust this if you want a specific directory for collected files
 # In settings.py, to enable debug logging
 # SOCIALACCOUNT_ADAPTER = 'allauth.socialaccount.adapters.DefaultSocialAccountAdapter'
