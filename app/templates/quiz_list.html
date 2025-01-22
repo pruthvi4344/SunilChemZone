@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sunil Chemistry Zone - Quizzes</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+        :root {
+    --primary-color: #8B5CF6;
+    --background-dark: #1a1a1a;
+    --text-light: #e0e0e0;
+    --text-gray: #888;
+}
+        body {
+            min-height: 100vh;
+            background: #000000;
+            background: radial-gradient(circle, #1a1a1a 0%, #000000 100%);
+            position: relative;
+            overflow-x: hidden;
+            color: #fff;
+        }
+
+        .navbar {
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            padding: 12px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .back-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border: 2px solid var(--primary-color);
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.back-button:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            font-size: 2rem;
+            animation: rotate 4s infinite linear;
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #fff, #7928CA);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .main-content {
+            padding: 100px 20px 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .quiz-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .quiz-header h1 {
+            font-size: 2.5rem;
+            background: linear-gradient(45deg, #7928CA, #FF0080);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+
+        .quiz-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .quiz-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .quiz-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 40px rgba(121, 40, 202, 0.2);
+        }
+
+        .quiz-card h3 {
+            color: #fff;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        .quiz-info {
+            display: flex;
+            justify-content: space-between;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .start-btn {
+            background: linear-gradient(45deg, #7928CA, #FF0080);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: opacity 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 15px;
+        }
+
+        .start-btn:hover {
+            opacity: 0.9;
+        }
+
+        .btn-container {
+            text-align: right;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* @media (max-width: 768px) {
+            .quiz-header h1 {
+                font-size: 2rem;
+            } */
+              /* Navbar */
+  /* .navbar {
+      padding: 10px 15px;
+  }
+  
+  .logo-text {
+      font-size: 1.2rem;
+  }
+  
+  .nav-right {
+      gap: 10px;
+  }
+            .quiz-grid {
+                grid-template-columns: 1fr;
+                padding: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .navbar {
+                padding: 5px 15px;
+            }
+
+            .logo-text {
+                font-size: 1.2rem;
+            }
+
+            .quiz-header h1 {
+                font-size: 1.5rem;
+            }
+            .nav-logo {
+      gap: 5px;
+  }
+  
+  .logo-icon {
+      font-size: 1.5rem;
+  }
+
+            .main-content {
+                padding: 80px 10px 20px;
+            }
+        } */
+
+/* Base responsive styles for your blog page */
+
+/* Extra large devices (large desktops, 1200px and up) */
+
+
+/* Large devices (desktops, 992px to 1199px) */
+
+
+/* Medium devices (tablets, 768px to 991px) */
+@media (max-width: 991px) {
+.navbar {
+padding: 10px 20px;
+}
+
+.logo-text {
+font-size: 1.3rem;
+}
+
+.logo-icon {
+font-size: 1.8rem;
+}
+
+
+
+.back-button {
+padding: 0.4rem 0.8rem;
+font-size: 0.9rem;
+}
+}
+
+/* Small devices (landscape phones, 576px to 767px) */
+@media (max-width: 767px) {
+.navbar {
+padding: 8px 15px;
+width: 100%;
+}
+
+.logo-text {
+font-size: 1.1rem;
+}
+
+.logo-icon {
+font-size: 1.5rem;
+}
+
+
+
+
+
+.back-button svg {
+width: 20px;
+height: 20px;
+}
+}
+
+/* Extra small devices (phones, 575px and down) */
+@media (max-width: 575px) {
+.navbar {
+padding: 8px 10px;
+width: 100%;
+}
+
+.nav-logo {
+gap: 5px;
+}
+
+.logo-text {
+font-size: 1rem;
+}
+
+.logo-icon {
+font-size: 1.3rem;
+}
+
+
+
+
+.back-button {
+padding: 0.3rem 0.6rem;
+font-size: 0.8rem;
+}
+
+
+/* Adjust molecule animation for smaller screens */
+.molecule {
+font-size: 3rem;
+}
+
+@keyframes molecule {
+0% {
+    transform: translate(-50px, 100vh) rotate(0deg) scale(0.3);
+}
+50% {
+    transform: translate(50vw, 50vh) rotate(360deg) scale(0.8);
+}
+100% {
+    transform: translate(100vw, -100vh) rotate(720deg) scale(0.3);
+}
+}
+}
+
+/* Fix for very small devices (iPhone SE, Galaxy Fold etc.) */
+@media (max-width: 320px) {
+.navbar {
+padding: 6px 8px;
+width: 100%;
+}
+
+.logo-text {
+font-size: 0.9rem;
+}
+
+.logo-icon {
+font-size: 1.2rem;
+}
+
+
+.back-button {
+padding: 0.2rem 0.4rem;
+font-size: 0.75rem;
+}
+
+.back-button svg {
+width: 16px;
+height: 16px;
+}
+}
+
+/* Landscape orientation fixes */
+@media (max-height: 500px) and (orientation: landscape) {
+
+
+.navbar {
+padding: 5px 15px;
+}
+
+
+}
+    </style>
+</head>
+<body>
+        <!-- Navbar -->
+        <nav class="navbar">
+            <div class="nav-logo">
+                <span class="logo-icon">⚗️</span>
+               <a href="{%url 'home'%}" style="text-decoration: none;"><span class="logo-text">Sunil Chemistry Zone</span></a> 
+            </div>
+            <a href="{% url 'home' %}" class="back-button">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M19 12H5M12 19l-7-7 7-7"/>
+                </svg>
+                Back
+            </a>
+        </nav>
+
+    <div class="main-content">
+        <div class="quiz-header">
+            <h1>Available Quizzes</h1>
+        </div>
+
+        <div class="quiz-grid">
+            <div class="quiz-card">
+                <h3>Organic Chemistry Basics</h3>
+                <div class="quiz-info">
+                    <span>Questions: 20</span>
+                    <span>Duration: 30 mins</span>
+                </div>
+                <div class="btn-container">
+                    <a href="" class="start-btn">Start Quiz</a>
+                </div>
+            </div>
+
+            <div class="quiz-card">
+                <h3>Periodic Table</h3>
+                <div class="quiz-info">
+                    <span>Questions: 15</span>
+                    <span>Duration: 25 mins</span>
+                </div>
+                <div class="btn-container">
+                    <a href="" class="start-btn">Start Quiz</a>
+                </div>
+            </div>
+
+            <div class="quiz-card">
+                <h3>Chemical Bonding</h3>
+                <div class="quiz-info">
+                    <span>Questions: 25</span>
+                    <span>Duration: 35 mins</span>
+                </div>
+                <div class="btn-container">
+                    <a href="" class="start-btn">Start Quiz</a>
+                </div>
+            </div>
+            {% for quiz in quizzes %}
+            <div class="quiz-card">
+                <h3>{{quiz.title}}</h3>
+                <div class="quiz-info">
+                    <span>Questions: {{quiz.que}}</span>
+                    <span>Duration: {{quiz.time_limit}} mins</span>
+                </div>
+                <div class="btn-container">
+                    <a href="{% url 'quiz_detail' quiz.id %}" class="start-btn">Start Quiz</a>
+                </div>
+            </div>
+            {%endfor%}
+        </div>
+    </div>
+</body>
+</html>

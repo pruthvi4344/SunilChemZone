@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ quiz.title }} Results</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+            background-color: #f5f5f5;
+        }
+
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 1rem;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            background: white;
+            margin: 1rem 0;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+        }
+
+        li:hover {
+            transform: translateY(-2px);
+        }
+
+        .result-item {
+            margin: 0.5rem 0;
+        }
+
+        .correct {
+            color: #27ae60;
+            font-weight: bold;
+        }
+
+        .wrong {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 2rem;
+            padding: 1rem;
+            background: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background 0.2s;
+        }
+
+        .back-link:hover {
+            background: #2980b9;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                margin: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>{{ quiz.title }} Results</h1>
+    <ul id="results-list">
+        {% for result in results %}
+            <li>
+                <div class="result-item">{{ result.question }}</div>
+                <div class="result-item">Your answer: {{ result.user_answer }}</div>
+                <div class="result-item">Correct answer: {{ result.correct_answer }}</div>
+                {% if result.correct %}
+                    <div class="correct">✓ Correct!</div>
+                {% else %}
+                    <div class="wrong">✗ Wrong!</div>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'quiz_list' %}" class="back-link">Back to Quiz List</a>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Calculate and display score
+            const results = document.querySelectorAll('#results-list li');
+            const correct = document.querySelectorAll('.correct').length;
+            const total = results.length;
+            const percentage = (correct / total * 100).toFixed(1);
+
+            const scoreDiv = document.createElement('div');
+            scoreDiv.style.textAlign = 'center';
+            scoreDiv.style.fontSize = '1.5rem';
+            scoreDiv.style.margin = '2rem 0';
+            scoreDiv.innerHTML = `Your Score: <strong>${correct}/${total}</strong> (${percentage}%)`;
+            
+            document.querySelector('h1').insertAdjacentElement('afterend', scoreDiv);
+
+            // Add animation to results as they appear
+            results.forEach((result, index) => {
+                result.style.opacity = '0';
+                result.style.transform = 'translateY(20px)';
+                setTimeout(() => {
+                    result.style.transition = 'opacity 0.5s, transform 0.5s';
+                    result.style.opacity = '1';
+                    result.style.transform = 'translateY(0)';
+                }, index * 100);
+            });
+        });
+    </script>
+</body>
+</html>

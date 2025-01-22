@@ -6,22 +6,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sunil Chemistry Zone - Dashboard</title>
-    <link rel="stylesheet" href="{% static 'css/indexcss.css' %}?v=1.0">
+    <link rel="stylesheet" href="{% static 'css/indexcss.css' %}?v=1.1">
     <script src="{% static 'js/indexjs.js' %}?v=1.0"></script>
-    
+    <style>
+
+    </style>
 </head>
 <body>
     <!-- Keep your existing navbar and notifications code -->
     <nav class="navbar">
         <div class="nav-logo">
             <span class="logo-icon">⚗️</span>
-           <a href="{%url 'home'%}" style="text-decoration: none;"><span class="logo-text">Sunil Chemistry Zone</span></a> 
+            <a href="{%url 'home'%}" style="text-decoration: none;"><span class="logo-text">Sunil Chemistry Zone</span></a>
         </div>
-        <div class="nav-right">
+        <button class="hamburger" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <div class="nav-right" id="nav-menu">
             <a href="#" class="username">{{ user.username }}</a>
+            <a href="{%url 'quiz_list'%}" class="username">Quiz</a>
             <a href="{%url 'account_logout'%}" style="text-decoration: none;" class="logout-btn">Logout</a>
         </div>
     </nav>
+    <script>
+        function toggleMenu() {
+            document.getElementById('nav-menu').classList.toggle('active');
+            document.querySelector('.hamburger').classList.toggle('active');
+        }
+        </script>
         <!-- notifications -->
    <!-- {% if messages %} -->
    {% for message in messages %}

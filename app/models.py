@@ -56,3 +56,24 @@ class StudyMaterial(models.Model):
 
     def __str__(self):
         return self.title
+    
+
+
+class Quiz(models.Model):
+    title = models.CharField(max_length=100)
+    que = models.CharField(max_length=10)
+    time_limit = models.IntegerField(default=1)  # Time limit in minutes
+    def __str__(self):
+        return self.title
+
+class Question(models.Model):
+    quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE)
+    text = models.TextField()
+    correct_answer = models.CharField(max_length=100)
+    option1 = models.CharField(max_length=100)
+    option2 = models.CharField(max_length=100)
+    option3 = models.CharField(max_length=100)
+    option4 = models.CharField(max_length=100)
+
+    def __str__(self):
+        return f"{self.quiz.title}: {self.text}"  # Include the quiz title in the string representation

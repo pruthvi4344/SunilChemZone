@@ -11,7 +11,7 @@ from .models import Standard, Chapter, StudyMaterial, Post, myphoto, myinfo, ski
 from django.http import JsonResponse
 from django.core.mail import send_mail
 from django.core.paginator import Paginator
-
+from .models import Question,Quiz
 
 
 # User Signup
@@ -175,5 +175,25 @@ def blog(request,id):
     post = get_object_or_404(Post,id=id)
     return render(request, 'blog.html', {'post': post})
 
+def quiz_list(request):
+    quizzes = Quiz.objects.all()
+    return render(request, 'quiz_list.html', {'quizzes': quizzes})
 
+def quiz_detail(request, quiz_id):
+    quiz = get_object_or_404(Quiz, id=quiz_id)
+    questions = quiz.question_set.all()
+    return render(request, 'quiz_detail.html', {'quiz': quiz, 'questions': questions})
+
+def quiz_result(request, quiz_id):
+    quiz = get_object_or_404(Quiz, id=quiz_id)
+    questions = quiz.question_set.all()
+    user_answers = request.POST
+
+    results = []
+    for question in questions:
+        user_answer = user_answers.get(str(question.id))
+        correct = user_answer == question.correct_answer
+        results.append({'question': question.text, 'correct': correct, 'user_answer': user_answer, 'correct_answer': question.correct_answer})
+
+    return render(request, 'quiz_result.html', {'quiz': quiz, 'results': results})
 
