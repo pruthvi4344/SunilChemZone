@@ -69,11 +69,16 @@ class Quiz(models.Model):
 class Question(models.Model):
     quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE)
     text = models.TextField()
+    image = models.ImageField(upload_to='question_images/', blank=True, null=True)  # Optional question image
     correct_answer = models.CharField(max_length=100)
     option1 = models.CharField(max_length=100)
+    option1_image = models.ImageField(upload_to='option_images/', blank=True, null=True)  # Optional image for option1
     option2 = models.CharField(max_length=100)
+    option2_image = models.ImageField(upload_to='option_images/', blank=True, null=True)  # Optional image for option2
     option3 = models.CharField(max_length=100)
+    option3_image = models.ImageField(upload_to='option_images/', blank=True, null=True)  # Optional image for option3
     option4 = models.CharField(max_length=100)
+    option4_image = models.ImageField(upload_to='option_images/', blank=True, null=True)  # Optional image for option4
 
     def __str__(self):
-        return f"{self.quiz.title}: {self.text}"  # Include the quiz title in the string representation
+        return self.text
