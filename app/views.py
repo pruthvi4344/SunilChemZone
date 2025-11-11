@@ -14,7 +14,7 @@ from django.core.paginator import Paginator
 from .models import Question,Quiz
 
 
-# User Signup
+# User Signup procedure
 def user_signup(request):
     if request.method == 'POST':
         
