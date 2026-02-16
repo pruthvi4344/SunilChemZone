@@ -162,7 +162,7 @@ def home(request):
         'instagrams': instagrams,
     })
 
-// fetch chapters
+# fetch chapters
 def get_chapters(request):
     standard_id = request.GET.get('standard_id')
     if standard_id:
@@ -183,7 +183,7 @@ def quiz_detail(request, quiz_id):
     quiz = get_object_or_404(Quiz, id=quiz_id)
     questions = quiz.question_set.all()
     return render(request, 'quiz_detail.html', {'quiz': quiz, 'questions': questions})
-
+#quiz result function
 def quiz_result(request, quiz_id):
     quiz = get_object_or_404(Quiz, id=quiz_id)
     questions = quiz.question_set.all()
