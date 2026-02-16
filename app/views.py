@@ -162,7 +162,7 @@ def home(request):
         'instagrams': instagrams,
     })
 
-
+// fetch chapters
 def get_chapters(request):
     standard_id = request.GET.get('standard_id')
     if standard_id:
