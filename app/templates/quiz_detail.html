@@ -491,6 +491,7 @@ font-size: 1.2rem;
             document.querySelector('.hamburger').classList.toggle('active');
         }
         </script><h3>Q{{forloop.counter}}. {{question.text}}</h3>
+    <!-- quiz container updated -->
     <div class="quiz-container">
         <h1>{{quiz.title}}</h1>
         <form id="quiz-form" action="{% url 'quiz_result' quiz.id %}" method="post">
