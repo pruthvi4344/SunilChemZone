@@ -1,6 +1,8 @@
 from django.urls import path, include
 from app import views
 from django.shortcuts import render
+
+# application routes
 urlpatterns = [
     path('', views.home, name='home'),
     path('login/', views.user_login, name='login'),
