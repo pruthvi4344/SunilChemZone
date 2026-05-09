@@ -45,6 +45,8 @@ class myinfo(models.Model):
 # skills section model
 class skills(models.Model):
     skill = models.CharField(max_length=70)
+
+# post detail model
 class Post(models.Model):
     title = models.CharField(max_length=200)
     content = models.TextField()
