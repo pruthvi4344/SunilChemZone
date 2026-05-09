@@ -15,6 +15,8 @@ from django.db import models
 class insta(models.Model):
     instagram = models.CharField(max_length=50)
     iname = models.CharField(max_length=50)
+
+# telephone detail model
 class Tele(models.Model):
     tele = models.CharField(max_length=50)
     tname = models.CharField(max_length=50)
