@@ -33,6 +33,8 @@ class myemail(models.Model):
 # my contact detail model
 class mycontact(models.Model):
     contact = models.CharField(max_length=14)
+
+# my photo detail model
 class myphoto(models.Model):
     photo = models.ImageField(upload_to='about_photos/', blank=True, null=True)
 class myinfo(models.Model):
