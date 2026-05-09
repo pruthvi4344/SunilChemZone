@@ -52,7 +52,8 @@ class Post(models.Model):
     content = models.TextField()
     date = models.DateTimeField()
     author = models.CharField(max_length=100)
-    
+
+# standard detail model
 class Standard(models.Model):
     std = models.CharField(max_length=100)
 
