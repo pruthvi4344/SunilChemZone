@@ -60,7 +60,7 @@ class Standard(models.Model):
     def __str__(self):
         return self.std
 
-
+# chapter detail model
 class Chapter(models.Model):
     name = models.CharField(max_length=100)
     std = models.ForeignKey(Standard, on_delete=models.CASCADE, related_name='Chapters')
