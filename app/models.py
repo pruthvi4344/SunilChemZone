@@ -37,6 +37,8 @@ class mycontact(models.Model):
 # my photo detail model
 class myphoto(models.Model):
     photo = models.ImageField(upload_to='about_photos/', blank=True, null=True)
+
+# my information detail model
 class myinfo(models.Model):
     info= models.TextField()
 class skills(models.Model):
