@@ -41,6 +41,8 @@ class myphoto(models.Model):
 # my information detail model
 class myinfo(models.Model):
     info= models.TextField()
+
+# skills section model
 class skills(models.Model):
     skill = models.CharField(max_length=70)
 class Post(models.Model):
