@@ -25,6 +25,8 @@ class Tele(models.Model):
 class yt(models.Model):
     yt = models.CharField(max_length=50)
     yname = models.CharField(max_length=50)
+
+# email address details model
 class myemail(models.Model):
     email = models.CharField(max_length=100)
 class mycontact(models.Model):
