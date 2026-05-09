@@ -29,6 +29,8 @@ class yt(models.Model):
 # email address details model
 class myemail(models.Model):
     email = models.CharField(max_length=100)
+
+# my contact detail model
 class mycontact(models.Model):
     contact = models.CharField(max_length=14)
 class myphoto(models.Model):
