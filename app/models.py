@@ -10,6 +10,8 @@ from django.db import models
 #     password1 = models.TextField(max_length=50)
 
 # from django.db import models
+
+# instagram detail model
 class insta(models.Model):
     instagram = models.CharField(max_length=50)
     iname = models.CharField(max_length=50)
