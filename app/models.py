@@ -20,6 +20,8 @@ class insta(models.Model):
 class Tele(models.Model):
     tele = models.CharField(max_length=50)
     tname = models.CharField(max_length=50)
+
+# youtube detail model
 class yt(models.Model):
     yt = models.CharField(max_length=50)
     yname = models.CharField(max_length=50)
