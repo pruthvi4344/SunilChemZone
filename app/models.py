@@ -68,6 +68,7 @@ class Chapter(models.Model):
     def __str__(self):
         return self.name
 
+# study material detail model
 class StudyMaterial(models.Model):
     title = models.CharField(max_length=100)
     chapter = models.ForeignKey(Chapter, on_delete=models.CASCADE, related_name='materials')
