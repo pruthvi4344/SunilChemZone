@@ -86,6 +86,7 @@ class Quiz(models.Model):
     def __str__(self):
         return self.title
 
+# model for the question
 class Question(models.Model):
     quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE)
     text = models.TextField()
