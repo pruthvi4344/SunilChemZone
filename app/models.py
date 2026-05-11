@@ -78,7 +78,7 @@ class StudyMaterial(models.Model):
         return self.title
     
 
-
+# quiz detail model
 class Quiz(models.Model):
     title = models.CharField(max_length=100)
     que = models.CharField(max_length=10)
